@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.xilu.sdk.demo">
+
+    <application
+        android:name=".AppApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        tools:replace="android:allowBackup,android:label">
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:label="@string/app_name"
+            android:theme="@style/AppThemeNoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+
+        <activity
+            android:name=".activity.ad.banner.BannerAdActivity"
+            android:label="@string/banner_ad"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".activity.ad.reward.RewardVodAdActivity"
+            android:label="@string/reward_vod_ad"
+            android:screenOrientation="portrait"
+            android:exported="false"/>
+
+        <activity
+            android:name=".activity.ad.fullscreen.FullScreenVodAdActivity"
+            android:label="@string/full_screen_vod_ad"
+            android:screenOrientation="portrait"
+            android:exported="false"/>
+
+        <activity
+            android:name=".activity.ad.interstitial.InterstitialAdActivity"
+            android:label="@string/interstitial_ad"
+            android:screenOrientation="portrait"
+            android:exported="false"/>
+
+<!--        <activity-->
+<!--            android:name=".activity.setting.PositionSettingActivity"-->
+<!--            android:label="@string/setting"-->
+<!--            android:screenOrientation="portrait"-->
+<!--            android:exported="false"/>-->
+
+<!--        <activity-->
+<!--            android:name=".activity.other.NormalWebActivity"-->
+<!--            android:label="@string/web"-->
+<!--            android:screenOrientation="portrait"-->
+<!--            android:exported="false"/>-->
+
+<!--        <activity-->
+<!--            android:name=".activity.setting.SettingActivity"-->
+<!--            android:label="@string/setting"-->
+<!--            android:screenOrientation="portrait"-->
+<!--            android:exported="false"/>-->
+
+        <activity android:name=".activity.ad.feed.NativeExpressActivity"
+            android:label="@string/native_express"
+            android:exported="false"/>
+
+        <activity android:name=".activity.ad.feed.NativeExpressListActivity"
+            android:label="@string/native_express"
+            android:exported="false"/>
+
+        <activity android:name=".activity.ad.feed.NativeSelfRenderActivity"
+            android:label="@string/native_self_render"
+            android:exported="false"/>
+
+        <activity android:name=".activity.ad.feed.NativeSelfRenderListActivity"
+            android:label="@string/native_self_render"
+            android:exported="false"/>
+
+        <activity android:name=".activity.ad.splash.SplashAdSettingActivity"
+            android:label="@string/splash_ad"
+            android:screenOrientation="portrait"
+            android:exported="false"/>
+
+        <activity android:name=".activity.ad.splash.SplashAdActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/splash"
+            android:exported="false"/>
+
+        <activity
+            android:name=".activity.ad.draw.DrawVodActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
+            android:label="@string/draw_vod_ad"
+            android:screenOrientation="portrait"
+            android:theme="@style/noActionBar"
+            android:exported="false"/>
+
+    </application>
+
+</manifest>
