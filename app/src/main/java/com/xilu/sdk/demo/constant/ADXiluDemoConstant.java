@@ -39,7 +39,7 @@ public class ADXiluDemoConstant {
     /**
      * BANNER广告位仅支持的平台
      */
-    public static String BANNER_AD_ONLY_SUPPORT_PLATFORM = null;
+    public static String BANNER_AD_ONLY_SUPPORT_PLATFORM = "ms";
     /**
      * BANNER广告场景id
      */

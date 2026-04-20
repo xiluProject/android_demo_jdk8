@@ -53,27 +53,26 @@ dependencies {
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 
     // ADXiluSdk核⼼库必须导⼊
-    implementation(name: 'XiluSDKCore-v1.0.4', ext: 'aar')
+    implementation(name: 'XiluSDKCore-v1.0.6', ext: 'aar')
     // ⼴点通AdapterSdk，可选的
-    implementation(name: 'AdapterGDT-v1.0.4', ext: 'aar')
+    implementation(name: 'AdapterGDT-v1.0.6', ext: 'aar')
     implementation(name: 'GDT_SDK.4.662.1532', ext: 'aar')
     // 穿山甲AdapterSdk，可选的
-    implementation(name: 'AdapterCSJ-v1.0.4', ext: 'aar')
+    implementation(name: 'AdapterCSJ-v1.0.6', ext: 'aar')
     implementation(name: 'CSJ_AD_6.7.0.6', ext: 'aar')
     // 百青藤AdapterSdk，可选的
-    implementation(name: 'AdapterBQT-v1.0.4', ext: 'aar')
+    implementation(name: 'AdapterBQT-v1.0.6', ext: 'aar')
     implementation(name: 'Baidu_MobAds_SDK-release_v9.450', ext: 'aar')
     // 快⼿AdapterSdk，可选的
-    implementation(name: 'AdapterKS-v1.0.4', ext: 'aar')
+    implementation(name: 'AdapterKS-v1.0.6', ext: 'aar')
     implementation(name: 'KS_AD_4.4.20.1', ext: 'aar')
     // 美数AdapterSdk，可选的
-    implementation(name: 'AdapterMS-v1.0.4', ext: 'aar')
+    implementation(name: 'AdapterMS-v1.0.6', ext: 'aar')
     implementation(name: 'MS_AD_2.5.7.7', ext: 'aar')
     implementation 'com.google.code.gson:gson:2.8.5'
     implementation 'com.squareup.okhttp3:okhttp:3.12.1'
     // 倍孜AdapterSdk，可选的
-    implementation(name: 'AdapterBZ-v1.0.4', ext: 'aar')
+    implementation(name: 'AdapterBZ-v1.0.6', ext: 'aar')
     implementation(name: 'BZ_AD_5.2.1.21', ext: 'aar')
-    implementation(name: 'kssdk-dev-tools-4.4.20.1', ext: 'aar')
 
 }
