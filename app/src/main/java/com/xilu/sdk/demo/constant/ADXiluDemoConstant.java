@@ -9,15 +9,11 @@ public class ADXiluDemoConstant {
      banner:uk4jsu3p
     */
     public static final String APP_ID = "n7v99s3c"; // 测试
-//    public static final String APP_ID = "8uf9xwqw"; //叮咚
-    //public static final String APP_ID = "gzhwjbrk"; //育新人
     public static final String TAG = "DemoLog";
     /**
      * 开屏广告位ID
      */
     public static String SPLASH_AD_POS_ID = "ek96tfdg"; // 测试
-//    public static String SPLASH_AD_POS_ID = "mfy5rqwz"; //叮咚
-    //public static String SPLASH_AD_POS_ID = "txt9dx5s"; //育新人
     /**
      * 开屏广告位仅支持的平台
      */
@@ -48,23 +44,21 @@ public class ADXiluDemoConstant {
     /**
      * 信息流广告位ID，模版渲染
      */
-//    public static final String NATIVE_AD_POS_ID1 = "675bmzvg";
-    public static final String NATIVE_AD_POS_ID1 = "xcqjcsr8";
+   public static final String NATIVE_AD_POS_ID1 = "675bmzvg";
+
     /**
      * 信息流广告位ID，模板渲染列表
      */
-//    public static final String NATIVE_AD_POS_ID2 = "675bmzvg";
-    public static final String NATIVE_AD_POS_ID2 = "xcqjcsr8";
+    public static final String NATIVE_AD_POS_ID2 = "675bmzvg";
     /**
      * 信息流广告位ID，自渲染
      */
-//    public static final String NATIVE_AD_POS_ID3 = "59jmkybj";
-    public static final String NATIVE_AD_POS_ID3 = "kvtsxfxs";
+    public static final String NATIVE_AD_POS_ID3 = "59jmkybj";
+
     /**
      * 信息流广告位ID，自渲染列表
      */
-//    public static final String NATIVE_AD_POS_ID4 = "59jmkybj";
-    public static final String NATIVE_AD_POS_ID4 = "kvtsxfxs";
+    public static final String NATIVE_AD_POS_ID4 = "59jmkybj";
     public static String NATIVE_AD_POS_ID = NATIVE_AD_POS_ID1;
     /**
      * 信息流广告一次拉取广告数量
@@ -83,8 +77,7 @@ public class ADXiluDemoConstant {
     /**
      * 激励视频广告位ID，竖版
      */
-//    public static final String REWARD_VOD_AD_POS_ID1 = "xgpvcpp3";
-    public static final String REWARD_VOD_AD_POS_ID1 = "5ja9eyy3";
+    public static final String REWARD_VOD_AD_POS_ID1 = "xgpvcpp3";
     /**
      * 激励视频广告位ID，横版
      */
@@ -113,8 +106,8 @@ public class ADXiluDemoConstant {
     /**
      * 插屏广告位ID
      */
-//    public static String INTERSTITIAL_AD_POS_ID = "9hmeh3af";
-    public static String INTERSTITIAL_AD_POS_ID = "hy2qy5fs";
+    public static String INTERSTITIAL_AD_POS_ID = "9hmeh3af";
+
     /**
      * 插屏广告位仅支持的平台
      */
