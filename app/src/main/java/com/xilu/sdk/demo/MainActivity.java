@@ -161,6 +161,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                             public void run() {
                                 initBtn.setText("SDK初始化完成");
                                 initBtn.setEnabled(true);
+                                Toast.makeText(MainActivity.this, "SDK初始化成功", Toast.LENGTH_SHORT).show();
                             }
                         });
                     }
@@ -168,8 +169,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     @Override
                     public void onFailed(String error) {
                         // 初始化失败
-                        initBtn.setText("SDK初始化失败,点击重试");
-                        initBtn.setEnabled(true);
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                initBtn.setText("SDK初始化失败,点击重试");
+                                initBtn.setEnabled(true);
+                                Toast.makeText(MainActivity.this, "SDK初始化失败: " + error, Toast.LENGTH_SHORT).show();
+                            }
+                        });
                     }
                 });
     }
