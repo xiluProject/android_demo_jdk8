@@ -14,7 +14,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.xilu.sdk.demo.constant.ADXiluDemoConstant;
 import com.xilu.sdk.demo.R;
 import com.xilu.sdk.ad.data.ADXiluDrawVodAdInfo;
-import com.xilu.sdk.ad.entity.DrawVodAdSampleData;
 import com.xilu.sdk.ad.error.ADXiluError;
 import com.xilu.sdk.ad.listener.ADXiluDrawVodVideoListener;
 import com.xilu.sdk.util.ADXiluAdUtil;

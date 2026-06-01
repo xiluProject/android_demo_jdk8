@@ -15,11 +15,11 @@ import com.xilu.sdk.demo.R;
 import com.xilu.sdk.demo.activity.ad.widget.MySmartRefreshLayout;
 import com.xilu.sdk.demo.activity.ad.widget.ViewPagerLayoutManager;
 import com.xilu.sdk.demo.activity.ad.adapter.DrawVodAdAdapter;
-import com.xilu.sdk.ad.ADXiluDrawVodAd;
+import com.xilu.sdk.ad.IADXiluDrawVodAd;
 import com.xilu.sdk.ad.data.ADXiluDrawVodAdInfo;
 import com.xilu.sdk.ad.entity.ADXiluAdSize;
 import com.xilu.sdk.ad.entity.ADXiluExtraParams;
-import com.xilu.sdk.ad.entity.DrawVodAdSampleData;
+import com.xilu.sdk.demo.activity.ad.adapter.DrawVodAdSampleData;
 import com.xilu.sdk.ad.error.ADXiluError;
 import com.xilu.sdk.ad.listener.ADXiluDrawVodAdListener;
 
@@ -33,7 +33,7 @@ import java.util.List;
  */
 public class DrawVodActivity extends AppCompatActivity implements OnRefreshLoadMoreListener {
     private MySmartRefreshLayout refreshLayout;
-    private ADXiluDrawVodAd drawVodAd;
+    private IADXiluDrawVodAd drawVodAd;
     private DrawVodAdAdapter drawVodAdAdapter;
     private int refreshType;
 
@@ -59,7 +59,7 @@ public class DrawVodActivity extends AppCompatActivity implements OnRefreshLoadM
     }
 
     private void initData() {
-        drawVodAd = new ADXiluDrawVodAd(this);
+        drawVodAd = com.xilu.sdk.ad.factory.AdFactoryManager.createDrawVodAd(this);
 
         int width = getResources().getDisplayMetrics().widthPixels;
         int height = getResources().getDisplayMetrics().heightPixels;

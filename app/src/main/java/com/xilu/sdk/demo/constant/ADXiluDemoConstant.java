@@ -9,6 +9,8 @@ public class ADXiluDemoConstant {
      banner:uk4jsu3p
     */
     public static final String APP_ID = "n7v99s3c"; // 测试
+    public static final String SLOT_ID = "29cx48j3";
+    public static final String WX_APP_ID = "";
     public static final String TAG = "DemoLog";
     /**
      * 开屏广告位ID

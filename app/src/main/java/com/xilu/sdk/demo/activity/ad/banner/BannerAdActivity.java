@@ -10,8 +10,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.xilu.sdk.demo.constant.ADXiluDemoConstant;
 import com.xilu.sdk.demo.R;
 import com.xilu.sdk.demo.util.SPUtil;
-import com.xilu.sdk.ad.ADXiluBannerAd;
+import com.xilu.sdk.ad.IADXiluBannerAd;
 import com.xilu.sdk.ad.data.ADXiluAdInfo;
+import com.xilu.sdk.ad.entity.ADXiluAdSize;
 import com.xilu.sdk.ad.entity.ADXiluExtraParams;
 import com.xilu.sdk.ad.error.ADXiluError;
 import com.xilu.sdk.ad.listener.ADXiluBannerAdListener;
@@ -26,7 +27,7 @@ import com.xilu.sdk.util.ADXiluToastUtil;
 public class BannerAdActivity extends AppCompatActivity {
 
     private FrameLayout flContainer;
-    private ADXiluBannerAd bannerAd;
+    private IADXiluBannerAd bannerAd;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -39,11 +40,11 @@ public class BannerAdActivity extends AppCompatActivity {
     private void loadBannerAd() {
         boolean issensor = SPUtil.getBoolean(this, "sensor");
         ADXiluExtraParams extraParams = new ADXiluExtraParams.Builder()
+                .adSize(new ADXiluAdSize(600, 300))
                 .setAdShakeDisable(issensor)
                 .build();
 
-        // 创建Banner广告实例，第一个参数可以是Activity或Fragment，第二个参数是广告容器（请保证容器不会拦截点击、触摸等事件）
-        bannerAd = new ADXiluBannerAd(this, flContainer);
+        bannerAd = com.xilu.sdk.ad.factory.AdFactoryManager.createBannerAd(this, flContainer);
         // 设置自刷新时间范围为30～120秒，⚠️注意！！！如果设置了自刷新，初始化ADXiluSDK时传入的content一定为Application的Content
         bannerAd.setAutoRefreshInterval(ADXiluDemoConstant.BANNER_AD_AUTO_REFRESH_INTERVAL);
         // 设置仅支持的广告平台，设置了这个值，获取广告时只会去获取该平台的广告，null或空字符串为不限制，默认为null，方便调试使用，上线时建议不设置

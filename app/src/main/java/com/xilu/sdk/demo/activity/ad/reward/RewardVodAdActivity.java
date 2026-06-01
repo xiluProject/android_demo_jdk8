@@ -11,7 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.xilu.sdk.demo.constant.ADXiluDemoConstant;
 import com.xilu.sdk.demo.R;
 import com.xilu.sdk.demo.util.SPUtil;
-import com.xilu.sdk.ad.ADXiluRewardVodAd;
+import com.xilu.sdk.ad.IADXiluRewardVodAd;
 import com.xilu.sdk.ad.data.ADXiluRewardVodAdInfo;
 import com.xilu.sdk.ad.entity.ADXiluExtraParams;
 import com.xilu.sdk.ad.error.ADXiluError;
@@ -24,7 +24,7 @@ import com.xilu.sdk.util.ADXiluToastUtil;
  * @date 2020/3/27
  */
 public class RewardVodAdActivity extends AppCompatActivity implements View.OnClickListener {
-    private ADXiluRewardVodAd rewardVodAd;
+    private IADXiluRewardVodAd rewardVodAd;
     private ADXiluRewardVodAdInfo rewardVodAdInfo;
 
     @Override
@@ -44,7 +44,7 @@ public class RewardVodAdActivity extends AppCompatActivity implements View.OnCli
     private void initAd() {
         boolean issensor = SPUtil.getBoolean(this, "sensor");
         // 创建激励视频广告实例
-        rewardVodAd = new ADXiluRewardVodAd(this);
+        rewardVodAd = com.xilu.sdk.ad.factory.AdFactoryManager.createRewardVodAd(this);
 
 //        ADXiluRewardExtra rewardExtra = new ADXiluRewardExtra("用户id");
 //        // 设置激励视频服务端验证的自定义信息

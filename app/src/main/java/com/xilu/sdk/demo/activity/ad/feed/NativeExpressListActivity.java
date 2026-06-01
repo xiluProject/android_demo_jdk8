@@ -16,7 +16,7 @@ import com.xilu.sdk.demo.R;
 import com.xilu.sdk.demo.activity.ad.adapter.NativeAdAdapter;
 import com.xilu.sdk.demo.activity.ad.widget.MySmartRefreshLayout;
 import com.xilu.sdk.demo.constant.ADXiluDemoConstant;
-import com.xilu.sdk.ad.ADXiluNativeAd;
+import com.xilu.sdk.ad.IADXiluNativeAd;
 import com.xilu.sdk.ad.data.ADXiluNativeAdInfo;
 import com.xilu.sdk.ad.entity.ADXiluAdSize;
 import com.xilu.sdk.ad.entity.ADXiluExtraParams;
@@ -31,7 +31,7 @@ import java.util.List;
 public class NativeExpressListActivity extends AppCompatActivity implements OnRefreshLoadMoreListener {
     private MySmartRefreshLayout refreshLayout;
     private NativeAdAdapter nativeAdAdapter;
-    private ADXiluNativeAd nativeAd;
+    private IADXiluNativeAd nativeAd;
     private List<Object> tempDataList = new ArrayList<>();
     private int refreshType;
     private StringBuffer stringBuffer = new StringBuffer();
@@ -61,7 +61,7 @@ public class NativeExpressListActivity extends AppCompatActivity implements OnRe
     private void initAd() {
         int widthPixels = getResources().getDisplayMetrics().widthPixels - ADXiluDisplayUtil.dp2px(20);
         // 创建信息流广告实例
-        nativeAd = new ADXiluNativeAd(this);
+        nativeAd = com.xilu.sdk.ad.factory.AdFactoryManager.createNativeAd(this);
 
         // 创建额外参数实例
         ADXiluExtraParams extraParams = new ADXiluExtraParams.Builder()

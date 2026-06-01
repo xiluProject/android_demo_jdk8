@@ -13,7 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.xilu.sdk.demo.constant.ADXiluDemoConstant;
 import com.xilu.sdk.demo.R;
-import com.xilu.sdk.ad.ADXiluNativeAd;
+import com.xilu.sdk.ad.IADXiluNativeAd;
 import com.xilu.sdk.ad.data.ADXiluNativeAdInfo;
 import com.xilu.sdk.ad.data.ADXiluNativeExpressAdInfo;
 import com.xilu.sdk.ad.entity.ADXiluAdSize;
@@ -38,7 +38,7 @@ public class NativeExpressActivity extends AppCompatActivity {
     private Button btnShowAd;
     private RelativeLayout rlExpressAd;
 
-    private ADXiluNativeAd mAd;
+    private IADXiluNativeAd mAd;
     private ADXiluNativeAdInfo adInfo;
 
     @Override
@@ -98,7 +98,7 @@ public class NativeExpressActivity extends AppCompatActivity {
         // 模板广告容器宽度
         int widthPixels = getResources().getDisplayMetrics().widthPixels;
         // 创建信息流广告实例
-        mAd = new ADXiluNativeAd(this);
+        mAd = com.xilu.sdk.ad.factory.AdFactoryManager.createNativeAd(this);
         // 创建额外参数实例
         ADXiluExtraParams extraParams = new ADXiluExtraParams.Builder()
                 // 设置整个广告视图预期宽高，单位为px，高度如果小于等于0则高度自适应

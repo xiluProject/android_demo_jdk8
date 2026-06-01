@@ -21,12 +21,14 @@ import com.xilu.sdk.demo.constant.ADXiluDemoConstant;
 import com.xilu.sdk.demo.util.UIUtils;
 import com.xilu.sdk.demo.R;
 import com.xilu.sdk.demo.util.SPUtil;
-import com.xilu.sdk.ad.ADXiluSplashAd;
+import com.xilu.sdk.ad.IADXiluSplashAd;
 import com.xilu.sdk.ad.data.ADXiluAdInfo;
 import com.xilu.sdk.ad.entity.ADXiluAdSize;
 import com.xilu.sdk.ad.entity.ADXiluExtraParams;
 import com.xilu.sdk.ad.error.ADXiluError;
 import com.xilu.sdk.ad.listener.ADXiluSplashAdListener;
+import com.xilu.sdk.core.plugin.PluginLoadListener;
+import com.xilu.sdk.core.plugin.PluginManagerImpl;
 import com.xilu.sdk.util.ADXiluToastUtil;
 
 /**
@@ -36,7 +38,7 @@ import com.xilu.sdk.util.ADXiluToastUtil;
  */
 public class SplashAdActivity extends AppCompatActivity {
 
-    private ADXiluSplashAd splashAd;
+    private IADXiluSplashAd splashAd;
 
     private TextView tvSkip;
     private FrameLayout flContainer;
@@ -166,7 +168,7 @@ public class SplashAdActivity extends AppCompatActivity {
      */
     private void initAd() {
         // 创建开屏广告实例，第一个参数可以是Activity或Fragment
-        splashAd = new ADXiluSplashAd(this);
+        splashAd = com.xilu.sdk.ad.factory.AdFactoryManager.createSplashAd(this);
 
         int widthPixels = UIUtils.getScreenWidthInPx(this);
         int heightPixels = UIUtils.getScreenHeightInPx(this);
@@ -252,13 +254,26 @@ public class SplashAdActivity extends AppCompatActivity {
                 if (error != null) {
                     String failedJson = error.toString();
                     Log.d(ADXiluDemoConstant.TAG, "onAdFailed----->" + failedJson);
+                    Log.d(ADXiluDemoConstant.TAG, "错误码: " + error.getCode());
+                    Log.d(ADXiluDemoConstant.TAG, "错误信息: " + error.getError());
                     ADXiluToastUtil.show(getApplicationContext(), "广告获取失败 : " + error.getError());
+                } else {
+                    Log.d(ADXiluDemoConstant.TAG, "onAdFailed----->error is null");
                 }
                 jumpMain();
             }
         });
 
         if (loadType == ADXiluDemoConstant.LOAD_AND_SHOW) {
+            if (!PluginManagerImpl.getInstance().isPluginLoadComplete()) {
+                PluginManagerImpl.getInstance().registerPluginLoadListener(new PluginLoadListener() {
+                    @Override
+                    public void onPluginLoadComplete() {
+                        loadAd();
+                    }
+                });
+                return;
+            }
             loadAd();
         }
     }

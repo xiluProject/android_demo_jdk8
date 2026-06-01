@@ -17,7 +17,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.bumptech.glide.Glide;
 import com.xilu.sdk.demo.R;
 import com.xilu.sdk.demo.constant.ADXiluDemoConstant;
-import com.xilu.sdk.ad.ADXiluNativeAd;
+import com.xilu.sdk.ad.IADXiluNativeAd;
 import com.xilu.sdk.ad.data.ADXiluNativeAdInfo;
 import com.xilu.sdk.ad.data.ADXiluNativeFeedAdInfo;
 import com.xilu.sdk.ad.entity.ADXiluAdSize;
@@ -52,7 +52,7 @@ public class NativeSelfRenderActivity extends AppCompatActivity {
     private TextView tvDesc;
     private ImageView ivClose;
 
-    private ADXiluNativeAd nativeAd;
+    private IADXiluNativeAd nativeAd;
     private ADXiluNativeAdInfo nativeAdInfo;
 
     @Override
@@ -120,7 +120,7 @@ public class NativeSelfRenderActivity extends AppCompatActivity {
         // 模板广告容器宽度
         int widthPixels = getResources().getDisplayMetrics().widthPixels;
         // 创建信息流广告实例
-        nativeAd = new ADXiluNativeAd(this);
+        nativeAd = com.xilu.sdk.ad.factory.AdFactoryManager.createNativeAd(this);
         // 创建额外参数实例
         ADXiluExtraParams extraParams = new ADXiluExtraParams.Builder()
                 // 设置整个广告视图预期宽高，单位为px，高度如果小于等于0则高度自适应

@@ -11,7 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.xilu.sdk.demo.constant.ADXiluDemoConstant;
 import com.xilu.sdk.demo.R;
-import com.xilu.sdk.ad.ADXiluFullScreenVodAd;
+import com.xilu.sdk.ad.IADXiluFullScreenVodAd;
 import com.xilu.sdk.ad.data.ADXiluFullScreenVodAdInfo;
 import com.xilu.sdk.ad.error.ADXiluError;
 import com.xilu.sdk.ad.listener.ADXiluFullScreenVodAdListener;
@@ -23,7 +23,7 @@ import com.xilu.sdk.util.ADXiluToastUtil;
  * @date 2020/3/27
  */
 public class FullScreenVodAdActivity extends AppCompatActivity implements View.OnClickListener {
-    private ADXiluFullScreenVodAd fullScreenVodAd;
+    private IADXiluFullScreenVodAd fullScreenVodAd;
     private ADXiluFullScreenVodAdInfo fullScreenVodAdInfo;
 
     @Override
@@ -47,7 +47,7 @@ public class FullScreenVodAdActivity extends AppCompatActivity implements View.O
     }
 
     private void initAd() {
-        fullScreenVodAd = new ADXiluFullScreenVodAd(this);
+        fullScreenVodAd = com.xilu.sdk.ad.factory.AdFactoryManager.createFullScreenVodAd(this);
         // 设置仅支持的广告平台，设置了这个值，获取广告时只会去获取该平台的广告，null或空字符串为不限制，默认为null，方便调试使用，上线时建议不设置
         // 注：仅debug模式为true时生效。
         fullScreenVodAd.setOnlySupportPlatform(ADXiluDemoConstant.FULL_SCREEN_VOD_AD_ONLY_SUPPORT_PLATFORM);
