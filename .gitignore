@@ -15,3 +15,6 @@
 .externalNativeBuild
 .cxx
 local.properties
+
+# 文档文件
+DEMO接入方式修改记录.md
