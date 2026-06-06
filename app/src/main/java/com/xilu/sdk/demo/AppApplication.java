@@ -1,6 +1,7 @@
 package com.xilu.sdk.demo;
 
 import android.app.Application;
+import android.util.Log;
 
 import com.xilu.sdk.demo.constant.ADXiluDemoConstant;
 import com.xilu.sdk.ADXiluSdk;
@@ -14,13 +15,41 @@ import com.xilu.sdk.listener.ADXiluInitListener;
  */
 public class AppApplication extends Application {
     public static Application application;
+    private static final String TAG = "AppApplication";
 
     @Override
     public void onCreate() {
         super.onCreate();
         application = this;
 
+        // 在Application中初始化SDK（App启动时自动初始化）
+        Log.d(TAG, "开始初始化SDK...");
+        ADXiluSdk.getInstance().init(this, new ADXiluInitConfig.Builder()
+                        .appId(ADXiluDemoConstant.APP_ID)
+                        .debug(true)
+                        // TODO 注意上线后请置为false
+                        .agreePrivacyStrategy(true)
+                        .isCanUseLocation(true)
+                        .isCanUsePhoneState(true)
+                        .isCanReadInstallList(true)
+                        .isCanUseReadWriteExternal(true)
+                        .isCanUseWifiState(true)
+                        .isCanUseOaid(true)
+                        .filterThirdQuestion(true)
+                        .setMultiprocess(true)
+                        .isCanUseSensor(true)
+                        .setCustomDeviceInfoController(new CustomDeviceInfoController() {})
+                        .build(),
+                new ADXiluInitListener() {
+                    @Override
+                    public void onSuccess() {
+                        Log.d(TAG, "SDK初始化成功");
+                    }
+
+                    @Override
+                    public void onFailed(String error) {
+                        Log.e(TAG, "SDK初始化失败: " + error);
+                    }
+                });
     }
-
-
 }
