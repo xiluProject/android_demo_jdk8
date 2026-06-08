@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                 @Override
                 public void onFailed(String s) {
-
+                    initBtn.setText("SDK初始化失败");
                 }
             });
         }
