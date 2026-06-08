@@ -8,9 +8,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CompoundButton;
-import android.widget.Switch;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,7 +16,6 @@ import androidx.appcompat.widget.Toolbar;
 import com.xilu.sdk.config.ADXiluInitConfig;
 import com.xilu.sdk.config.CustomDeviceInfoController;
 import com.xilu.sdk.demo.activity.ad.banner.BannerAdActivity;
-import com.xilu.sdk.demo.activity.ad.draw.DrawVodActivity;
 import com.xilu.sdk.demo.activity.ad.feed.NativeExpressActivity;
 import com.xilu.sdk.demo.activity.ad.feed.NativeExpressListActivity;
 import com.xilu.sdk.demo.activity.ad.feed.NativeSelfRenderActivity;
@@ -29,7 +25,6 @@ import com.xilu.sdk.demo.activity.ad.interstitial.InterstitialAdActivity;
 import com.xilu.sdk.demo.activity.ad.reward.RewardVodAdActivity;
 import com.xilu.sdk.demo.activity.ad.splash.SplashAdSettingActivity;
 import com.xilu.sdk.demo.constant.ADXiluDemoConstant;
-import com.xilu.sdk.demo.util.SPUtil;
 import com.xilu.sdk.ADXiluSdk;
 import com.xilu.sdk.listener.ADXiluInitListener;
 
@@ -80,7 +75,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.init_btn){
-            initAd();
+            initSdk();
             return;
         }
         int id = v.getId();
@@ -133,7 +128,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     /**
      * 初始化广告SDK并且跳转开屏界面
      */
-    public void initAd() {
+    public void initSdk() {
         initBtn.setText("正在初始化...");
         initBtn.setEnabled(false);
         // 初始化ADXilu广告SDK
