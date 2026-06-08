@@ -144,25 +144,25 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         // TODO 注意上线后请置为false
                         .debug(true)
                         //【慎改】是否同意隐私政策，将禁用一切设备信息读起严重影响收益
-                        .agreePrivacyStrategy(true)
+                        .agreePrivacyStrategy(false)
                         // 是否可获取定位数据
-                        .isCanUseLocation(true)
+                        .isCanUseLocation(false)
                         // 是否可获取设备信息
-                        .isCanUsePhoneState(true)
+                        .isCanUsePhoneState(false)
                         // 是否可读取设备安装列表
-                        .isCanReadInstallList(true)
+                        .isCanReadInstallList(false)
                         // 是否可读取设备外部读写权限
-                        .isCanUseReadWriteExternal(true)
+                        .isCanUseReadWriteExternal(false)
                         // 是否可读取WIFI信息
-                        .isCanUseWifiState(true)
+                        .isCanUseWifiState(false)
                         // 是否可使用OAID
-                        .isCanUseOaid(true)
+                        .isCanUseOaid(false)
                         // 是否过滤第三方平台的问题广告（例如: 已知某个广告平台在某些机型的Banner广告可能存在问题，如果开启过滤，则在该机型将不再去获取该平台的Banner广告）
-                        .filterThirdQuestion(true)
+                        .filterThirdQuestion(false)
                         // 是否允许多进程
-                        .setMultiprocess(true)
+                        .setMultiprocess(false)
                         // 是否允许使用传感器
-                        .isCanUseSensor(true)
+                        .isCanUseSensor(false)
                         .setCustomDeviceInfoController(new CustomDeviceInfoController() {
                         })
                         .build(),
