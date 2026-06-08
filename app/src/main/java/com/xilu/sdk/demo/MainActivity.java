@@ -60,7 +60,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.btnRewardVodAd).setOnClickListener(this);
         findViewById(R.id.btnFullScreenAd).setOnClickListener(this);
         findViewById(R.id.btnInterstitialAd).setOnClickListener(this);
-        //initAd();
+        if(ADXiluSdk.getInstance().isInit()){
+            initBtn.setText("SDK初始化完成");
+        }else {
+            ADXiluSdk.getInstance().setmInitListener(new ADXiluInitListener() {
+                @Override
+                public void onSuccess() {
+                    initBtn.setText("SDK初始化完成");
+                }
+
+                @Override
+                public void onFailed(String s) {
+
+                }
+            });
+        }
     }
 
     @Override
@@ -130,25 +144,25 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         // TODO 注意上线后请置为false
                         .debug(true)
                         //【慎改】是否同意隐私政策，将禁用一切设备信息读起严重影响收益
-                        .agreePrivacyStrategy(false)
+                        .agreePrivacyStrategy(true)
                         // 是否可获取定位数据
-                        .isCanUseLocation(false)
+                        .isCanUseLocation(true)
                         // 是否可获取设备信息
-                        .isCanUsePhoneState(false)
+                        .isCanUsePhoneState(true)
                         // 是否可读取设备安装列表
-                        .isCanReadInstallList(false)
+                        .isCanReadInstallList(true)
                         // 是否可读取设备外部读写权限
-                        .isCanUseReadWriteExternal(false)
+                        .isCanUseReadWriteExternal(true)
                         // 是否可读取WIFI信息
-                        .isCanUseWifiState(false)
+                        .isCanUseWifiState(true)
                         // 是否可使用OAID
-                        .isCanUseOaid(false)
+                        .isCanUseOaid(true)
                         // 是否过滤第三方平台的问题广告（例如: 已知某个广告平台在某些机型的Banner广告可能存在问题，如果开启过滤，则在该机型将不再去获取该平台的Banner广告）
                         .filterThirdQuestion(true)
                         // 是否允许多进程
                         .setMultiprocess(true)
                         // 是否允许使用传感器
-                        .isCanUseSensor(false)
+                        .isCanUseSensor(true)
                         .setCustomDeviceInfoController(new CustomDeviceInfoController() {
                         })
                         .build(),
