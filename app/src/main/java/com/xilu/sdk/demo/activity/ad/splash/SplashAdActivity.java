@@ -17,6 +17,7 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.xilu.sdk.ADXiluSdk;
 import com.xilu.sdk.demo.constant.ADXiluDemoConstant;
 import com.xilu.sdk.demo.util.UIUtils;
 import com.xilu.sdk.demo.R;
@@ -27,6 +28,7 @@ import com.xilu.sdk.ad.entity.ADXiluAdSize;
 import com.xilu.sdk.ad.entity.ADXiluExtraParams;
 import com.xilu.sdk.ad.error.ADXiluError;
 import com.xilu.sdk.ad.listener.ADXiluSplashAdListener;
+import com.xilu.sdk.listener.ADXiluInitListener;
 import com.xilu.sdk.util.ADXiluToastUtil;
 
 /**
@@ -75,7 +77,22 @@ public class SplashAdActivity extends AppCompatActivity {
         setFullScreen();
         initView();
         initListener();
-        initAd();
+        if(ADXiluSdk.getInstance().isInit()) {
+            initAd();
+        }else{
+            ADXiluSdk.getInstance().setmInitListener(new ADXiluInitListener() {
+
+                @Override
+                public void onSuccess() {
+                    initAd();
+                }
+
+                @Override
+                public void onFailed(String s) {
+
+                }
+            });
+        }
     }
 
     /**
