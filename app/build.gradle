@@ -70,7 +70,7 @@ dependencies {
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 
     // ADXiluSdk核⼼库必须导⼊
-    implementation(name: 'XiluSDKCore-v2.0.1', ext: 'aar')
+    implementation(name: 'XiluSDKCore-v2.0.3', ext: 'aar')
     // ⼴点通AdapterSdk，可选的
     implementation(name: 'GDT_SDK.4.662.1532', ext: 'aar')
     // 穿山甲AdapterSdk，可选的
