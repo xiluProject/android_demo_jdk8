@@ -21,6 +21,26 @@ public class ADXiluDemoConstant {
      */
     public static String SPLASH_AD_ONLY_SUPPORT_PLATFORM = null;
     /**
+     * BANNER广告位仅支持的平台
+     */
+    public static String BANNER_AD_ONLY_SUPPORT_PLATFORM = null;
+    /**
+     * 信息流广告位仅支持的平台
+     */
+    public static String NATIVE_AD_ONLY_SUPPORT_PLATFORM = null;
+    /**
+     * 激励视频广告位仅支持的平台
+     */
+    public static String REWARD_VOD_AD_ONLY_SUPPORT_PLATFORM = null;
+    /**
+     * 全屏视频广告位仅支持的平台
+     */
+    public static String FULL_SCREEN_VOD_AD_ONLY_SUPPORT_PLATFORM = null;
+    /**
+     * 插屏广告位仅支持的平台
+     */
+    public static String INTERSTITIAL_AD_ONLY_SUPPORT_PLATFORM = null;
+    /**
      * 开屏自定义跳过按钮
      */
     public static boolean SPLASH_AD_CUSTOM_SKIP_VIEW = false;
@@ -34,10 +54,7 @@ public class ADXiluDemoConstant {
      * Banner广告自刷新间隔时长，单位秒
      */
     public static int BANNER_AD_AUTO_REFRESH_INTERVAL = 30;
-    /**
-     * BANNER广告位仅支持的平台
-     */
-    public static String BANNER_AD_ONLY_SUPPORT_PLATFORM = null;
+
     /**
      * BANNER广告场景id
      */
@@ -66,10 +83,7 @@ public class ADXiluDemoConstant {
      * 信息流广告一次拉取广告数量
      */
     public static int NATIVE_AD_COUNT = 2;
-    /**
-     * 信息流广告位仅支持的平台
-     */
-    public static String NATIVE_AD_ONLY_SUPPORT_PLATFORM = null;
+
     public static boolean NATIVE_AD_PLAY_WITH_MUTE = true;
     /**
      * 信息流广告位场景id
@@ -85,10 +99,7 @@ public class ADXiluDemoConstant {
      */
     public static final String REWARD_VOD_AD_POS_ID2 = "31167c54f5edc926f4";
     public static String REWARD_VOD_AD_POS_ID = REWARD_VOD_AD_POS_ID1;
-    /**
-     * 激励视频广告位仅支持的平台
-     */
-    public static String REWARD_VOD_AD_ONLY_SUPPORT_PLATFORM = null;
+
     public static boolean REWARD_AD_PLAY_WITH_MUTE = false;
 
     /**
@@ -96,10 +107,7 @@ public class ADXiluDemoConstant {
      */
     public static final String FULL_SCREEN_VOD_AD_POS_ID1 = "6620c9299df9013cf5";
     public static String FULL_SCREEN_VOD_AD_POS_ID = FULL_SCREEN_VOD_AD_POS_ID1;
-    /**
-     * 全屏视频广告位仅支持的平台
-     */
-    public static String FULL_SCREEN_VOD_AD_ONLY_SUPPORT_PLATFORM = null;
+
     /**
      * 激励视频广告位场景id
      */
@@ -110,10 +118,7 @@ public class ADXiluDemoConstant {
      */
     public static String INTERSTITIAL_AD_POS_ID = "9hmeh3af";
 
-    /**
-     * 插屏广告位仅支持的平台
-     */
-    public static String INTERSTITIAL_AD_ONLY_SUPPORT_PLATFORM = null;
+
     public static boolean INTERSTITIAL_AD_PLAY_WITH_MUTE = false;
     public static boolean INTERSTITIAL_AD_AUTO_CLOSE = false;
     /**
