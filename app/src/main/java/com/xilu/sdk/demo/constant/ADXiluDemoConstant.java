@@ -8,12 +8,19 @@ public class ADXiluDemoConstant {
      测试appid:n7v99s3c
      banner:uk4jsu3p
     */
+
     public static final String APP_ID = "n7v99s3c"; // 测试
-    public static final String TAG = "DemoLog";
     /**
      * 开屏广告位ID
      */
     public static String SPLASH_AD_POS_ID = "ek96tfdg"; // 测试
+    /**
+     * Banner广告位ID
+     */
+    public static String BANNER_AD_POS_ID = "uk4jsu3p";
+
+    public static final String TAG = "DemoLog";
+
     /**
      * 开屏广告位仅支持的平台
      */
@@ -23,10 +30,7 @@ public class ADXiluDemoConstant {
      */
     public static boolean SPLASH_AD_CUSTOM_SKIP_VIEW = false;
 
-    /**
-     * Banner广告位ID
-     */
-    public static String BANNER_AD_POS_ID = "uk4jsu3p";
+
 
     /**
      * Banner广告自刷新间隔时长，单位秒
@@ -155,4 +159,5 @@ public class ADXiluDemoConstant {
      * 仅加载
      */
     public static int LOAD_ONLY = 1;
+
 }

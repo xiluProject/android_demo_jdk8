@@ -16,7 +16,7 @@ android {
 
     defaultConfig {
 //        applicationId "com.pansoft.dingdongfm3"
-        //applicationId "com.iqilu.app656"
+        //applicationId "com.yqk.commerce"
         applicationId "com.qunze.xiju"
         minSdkVersion 24
         targetSdkVersion 33

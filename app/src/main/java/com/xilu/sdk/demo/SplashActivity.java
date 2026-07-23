@@ -1,9 +1,9 @@
 package com.xilu.sdk.demo;
 
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
-import android.text.TextUtils;
+import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,7 +11,6 @@ import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.xilu.sdk.ADXiluSdk;
@@ -33,11 +32,28 @@ import com.xilu.sdk.listener.ADXiluInitListener;
 public class SplashActivity extends AppCompatActivity {
 
     private static final String TAG = "SplashActivity";
+    /**
+     * 开屏页最大等待时长，单位毫秒
+     */
+    private static final long SPLASH_MAX_WAIT_TIME = 5000;
 
     private ADXiluSplashAd splashAd;
     private TextView tvSkip;
     private FrameLayout flContainer;
     private RelativeLayout rlLogoContainer;
+
+    private final Handler mHandler = new Handler(Looper.getMainLooper());
+    private Runnable mTimeoutRunnable;
+    /**
+     * 是否已经跳转，防止重复跳转
+     */
+    private volatile boolean mHasJumped;
+    /**
+     * 广告收到、曝光、关闭时间戳，用于排查过早跳转
+     */
+    private long mAdReceiveTime;
+    private long mAdExposeTime;
+    private long mAdCloseTime;
 
     /**
      * 广告位
@@ -81,7 +97,8 @@ public class SplashActivity extends AppCompatActivity {
 
                 @Override
                 public void onFailed(String s) {
-
+                    Log.w(TAG, "SDK初始化失败，跳转主界面");
+                    jumpMain();
                 }
             });
         }
@@ -132,6 +149,9 @@ public class SplashActivity extends AppCompatActivity {
         // 创建开屏广告实例
         splashAd = new ADXiluSplashAd(this);
 
+        // 启动开屏超时兜底：无论广告成功/失败/异常，最多等待 SPLASH_MAX_WAIT_TIME 后强制跳转
+        startSplashTimeout();
+
         int widthPixels = UIUtils.getScreenWidthInPx(this);
         int heightPixels = UIUtils.getScreenHeightInPx(this);
 
@@ -175,7 +195,9 @@ public class SplashActivity extends AppCompatActivity {
 
             @Override
             public void onAdReceive(ADXiluAdInfo adInfo) {
-                Log.d(TAG, "广告获取成功回调... ");
+                mAdReceiveTime = System.currentTimeMillis();
+                String msg = "广告获取成功 receiveTime=" + mAdReceiveTime;
+                Log.d(TAG, msg);
                 // 广告获取成功后，清除Window背景，让广告内容显示出来
                 getWindow().setBackgroundDrawable(null);
                 if (loadType == ADXiluDemoConstant.LOAD_AND_SHOW) {
@@ -185,10 +207,14 @@ public class SplashActivity extends AppCompatActivity {
 
             @Override
             public void onAdExpose(ADXiluAdInfo adInfo) {
+                mAdExposeTime = System.currentTimeMillis();
+                // 广告已曝光，取消5秒全局兜底，交给SDK自己的倒计时/关闭回调决定何时跳转
+                removeSplashTimeout();
                 if (ADXiluDemoConstant.SPLASH_AD_CUSTOM_SKIP_VIEW) {
                     tvSkip.setAlpha(1f);
                 }
-                Log.d(TAG, "广告展示回调");
+                String msg = "广告展示 expose2receive=" + (mAdExposeTime - mAdReceiveTime) + "ms";
+                Log.d(TAG, msg);
             }
 
             @Override
@@ -198,7 +224,10 @@ public class SplashActivity extends AppCompatActivity {
 
             @Override
             public void onAdClose(ADXiluAdInfo adInfo) {
-                Log.d(TAG, "广告关闭回调，跳转主界面");
+                mAdCloseTime = System.currentTimeMillis();
+                long duration = mAdExposeTime > 0 ? mAdCloseTime - mAdExposeTime : mAdCloseTime - mAdReceiveTime;
+                String msg = "广告关闭 expose2close=" + duration + "ms";
+                Log.d(TAG, msg);
                 jumpMain();
             }
 
@@ -209,6 +238,8 @@ public class SplashActivity extends AppCompatActivity {
                 }
                 // 广告失败也清除Window背景
                 getWindow().setBackgroundDrawable(null);
+                String msg = "广告加载失败，跳转";
+                Log.d(TAG, msg);
                 jumpMain();
             }
         });
@@ -238,9 +269,40 @@ public class SplashActivity extends AppCompatActivity {
      * 跳转到主界面
      */
     private void jumpMain() {
+        if (mHasJumped || isFinishing() || isDestroyed()) {
+            return;
+        }
+        mHasJumped = true;
+        removeSplashTimeout();
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
         finish();
+    }
+
+    /**
+     * 启动开屏超时兜底
+     */
+    private void startSplashTimeout() {
+        removeSplashTimeout();
+        mTimeoutRunnable = new Runnable() {
+            @Override
+            public void run() {
+                String msg = "开屏5秒未曝光，超时跳转";
+                Log.w(TAG, msg);
+                jumpMain();
+            }
+        };
+        mHandler.postDelayed(mTimeoutRunnable, SPLASH_MAX_WAIT_TIME);
+    }
+
+    /**
+     * 移除开屏超时兜底
+     */
+    private void removeSplashTimeout() {
+        if (mTimeoutRunnable != null) {
+            mHandler.removeCallbacks(mTimeoutRunnable);
+            mTimeoutRunnable = null;
+        }
     }
 
     /**
@@ -260,6 +322,8 @@ public class SplashActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        // 移除超时任务，避免内存泄漏和Activity销毁后仍跳转
+        removeSplashTimeout();
         // 释放广告资源
         if (splashAd != null) {
             splashAd.release();
