@@ -4,13 +4,11 @@
     android:layout_height="match_parent"
     android:background="#ffffff">
 
-    <!-- 广告容器 - 必须占满除logo外的所有空间，高度>=屏幕75% -->
+    <!-- 广告容器 - 全屏显示 -->
     <FrameLayout
         android:id="@+id/flSplashContainer"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_above="@+id/rlLogoContainer"
-        android:layout_alignParentTop="true" />
+        android:layout_height="match_parent" />
 
     <!-- Logo区域 -->
     <RelativeLayout
