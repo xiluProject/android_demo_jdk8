@@ -89,7 +89,8 @@ public class SplashActivity extends AppCompatActivity {
 
                 @Override
                 public void onFailed(String s) {
-
+                    Log.e(ADXiluDemoConstant.TAG, "SDK初始化失败: " + s);
+                    jumpMain();
                 }
             });
         }
@@ -214,6 +215,11 @@ public class SplashActivity extends AppCompatActivity {
             public void onADTick(long millisUntilFinished) {
                 Log.d(ADXiluDemoConstant.TAG, "广告剩余倒计时时长回调：" + millisUntilFinished);
                 tvSkip.setText(millisUntilFinished + "s自动跳转");
+                // 倒计时结束，自动跳转主界面
+                if (millisUntilFinished <= 0) {
+                    Log.d(ADXiluDemoConstant.TAG, "广告倒计时结束，自动跳转");
+                    jumpMain();
+                }
             }
 
             @Override
