@@ -4,46 +4,45 @@ package com.xilu.sdk.demo.constant;
  * Created by zhangqinglou on 2025/4/18.
  */
 public class ADXiluDemoConstant {
-    public static final String TAG = "demo";
     /*
      测试appid:n7v99s3c
      banner:uk4jsu3p
     */
-    //public static final String APP_ID = "n7v99s3c"; // 测试
-    //public static final String TAG = "DemoLog";
+    public static final String APP_ID = "n7v99s3c"; // 测试
+    public static final String TAG = "DemoLog";
     /**
      * 开屏广告位ID
      */
-    //public static String SPLASH_AD_POS_ID = "ek96tfdg"; // 测试
+    public static String SPLASH_AD_POS_ID = "ek96tfdg"; // 测试
     /**
      * Banner广告位ID
      */
-    //public static String BANNER_AD_POS_ID = "uk4jsu3p";
+    public static String BANNER_AD_POS_ID = "uk4jsu3p";
     /**
      * 激励视频广告位ID，竖版
      */
-    //public static final String REWARD_VOD_AD_POS_ID1 = "xgpvcpp3";
+    public static final String REWARD_VOD_AD_POS_ID1 = "xgpvcpp3";
     /**
      * 插屏广告位ID
      */
-    //public static String INTERSTITIAL_AD_POS_ID = "9hmeh3af";
+    public static String INTERSTITIAL_AD_POS_ID = "9hmeh3af";
     /**
      * 信息流广告位ID，模版渲染
      */
-    //public static final String NATIVE_AD_POS_ID1 = "675bmzvg";
+    public static final String NATIVE_AD_POS_ID1 = "675bmzvg";
     /**
      * 信息流广告位ID，模板渲染列表
      */
-    //public static final String NATIVE_AD_POS_ID2 = "675bmzvg";
+    public static final String NATIVE_AD_POS_ID2 = "675bmzvg";
     /**
      * 信息流广告位ID，自渲染
      */
-    //public static final String NATIVE_AD_POS_ID3 = "59jmkybj";
+    public static final String NATIVE_AD_POS_ID3 = "59jmkybj";
 
     /**
      * 信息流广告位ID，自渲染列表
      */
-    //public static final String NATIVE_AD_POS_ID4 = "59jmkybj";
+    public static final String NATIVE_AD_POS_ID4 = "59jmkybj";
     /**
      * 开屏广告位仅支持的平台
      */
@@ -165,40 +164,23 @@ public class ADXiluDemoConstant {
 
 
 
-    public static final String APP_ID = "qb9x34q9"; // 测试
-    /**
-     * 开屏广告位ID
-     */
+    /*public static final String APP_ID = "qb9x34q9"; // 测试
+
     public static String SPLASH_AD_POS_ID = "c26evznj"; // 测试
-    /**
-     * Banner广告位ID
-     */
+
     public static String BANNER_AD_POS_ID = "6mue4kmx";
-    /**
-     * 激励视频广告位ID，竖版
-     */
+
     public static final String REWARD_VOD_AD_POS_ID1 = "xgpvcpp3";
-    /**
-     * 插屏广告位ID
-     */
+
     public static String INTERSTITIAL_AD_POS_ID = "q4udz5nw";
-    /**
-     * 信息流广告位ID，模版渲染
-     */
+
     public static final String NATIVE_AD_POS_ID1 = "zy2z4bk9";
-    /**
-     * 信息流广告位ID，模板渲染列表
-     */
+
     public static final String NATIVE_AD_POS_ID2 = "zy2z4bk9";
-    /**
-     * 信息流广告位ID，自渲染
-     */
+
     public static final String NATIVE_AD_POS_ID3 = "zy2z4bk9";
 
-    /**
-     * 信息流广告位ID，自渲染列表
-     */
-    public static final String NATIVE_AD_POS_ID4 = "zy2z4bk9";
+    public static final String NATIVE_AD_POS_ID4 = "zy2z4bk9";*/
 
     public static String REWARD_VOD_AD_POS_ID = REWARD_VOD_AD_POS_ID1;
     public static String NATIVE_AD_POS_ID = NATIVE_AD_POS_ID1;
