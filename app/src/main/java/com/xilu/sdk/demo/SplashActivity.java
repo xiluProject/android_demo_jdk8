@@ -56,6 +56,16 @@ public class SplashActivity extends AppCompatActivity {
         tvSkip = findViewById(R.id.tvSkip);
         rlLogoContainer = findViewById(R.id.rlLogoContainer);
 
+        // 监听广告容器子view变化，SDK添加广告view时可能重置系统UI，重新隐藏状态栏
+        flContainer.setOnHierarchyChangeListener(new ViewGroup.OnHierarchyChangeListener() {
+            @Override
+            public void onChildViewAdded(View parent, View child) {
+                hideStatusBar();
+            }
+            @Override
+            public void onChildViewRemoved(View parent, View child) {}
+        });
+
         if (ADXiluSdk.getInstance().isInit()) {
             initAd();
         } else {
@@ -115,6 +125,8 @@ public class SplashActivity extends AppCompatActivity {
                 Log.d(TAG, "广告展示");
                 removeSplashTimeout();
                 tvSkip.setAlpha(1f);
+                // SDK展示广告时可能重置系统UI，重新隐藏状态栏
+                getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
             }
 
             @Override
@@ -135,6 +147,22 @@ public class SplashActivity extends AppCompatActivity {
         });
 
         splashAd.loadOnly(ADXiluDemoConstant.SPLASH_AD_POS_ID);
+    }
+
+    private void hideStatusBar() {
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        getWindow().getDecorView().setSystemUiVisibility(
+            View.SYSTEM_UI_FLAG_FULLSCREEN |
+            View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+        );
+    }
+
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+        if (hasFocus) {
+            hideStatusBar();
+        }
     }
 
     private void jumpMain() {
