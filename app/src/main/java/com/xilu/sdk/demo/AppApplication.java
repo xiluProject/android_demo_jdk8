@@ -64,7 +64,7 @@ public class AppApplication extends Application {
                 // 设置微信AppId
                 //.setWXAppId(ADXiluDemoConstant.WX_APP_ID)
                 .setCustomDeviceInfoController(new CustomDeviceInfoController() {})
-                // 设置图片加载器（使用Glide）
+                /*// 设置图片加载器（使用Glide）
                 .setImageLoader(new ADXiluImageLoader() {
                     @Override
                     public void loadImage(Context context, String url, ImageView imageView) {
@@ -83,7 +83,7 @@ public class AppApplication extends Application {
                             callback.onSuccess();
                         }
                     }
-                })
+                })*/
                 .build(), new ADXiluInitListener() {
             @Override
             public void onSuccess() {
