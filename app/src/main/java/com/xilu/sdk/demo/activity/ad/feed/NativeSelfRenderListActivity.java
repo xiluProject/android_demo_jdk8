@@ -23,6 +23,7 @@ import com.xilu.sdk.ad.entity.ADXiluExtraParams;
 import com.xilu.sdk.ad.error.ADXiluError;
 import com.xilu.sdk.ad.listener.ADXiluNativeAdListener;
 import com.xilu.sdk.util.ADXiluDisplayUtil;
+import com.xilu.sdk.util.ADXiluToastUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -134,6 +135,7 @@ public class NativeSelfRenderListActivity extends AppCompatActivity implements O
             public void onAdFailed(ADXiluError error) {
                 if (error != null) {
                     Log.d(ADXiluDemoConstant.TAG, "onAdFailed: " + error.toString());
+                    ADXiluToastUtil.show(getApplicationContext(), "广告获取失败 : " + error.getError());
                 }
                 nativeAdAdapter.addData(tempDataList);
                 refreshLayout.finish(refreshType, false, false);

@@ -22,6 +22,7 @@ import com.xilu.sdk.ad.entity.ADXiluExtraParams;
 import com.xilu.sdk.ad.entity.DrawVodAdSampleData;
 import com.xilu.sdk.ad.error.ADXiluError;
 import com.xilu.sdk.ad.listener.ADXiluDrawVodAdListener;
+import com.xilu.sdk.util.ADXiluToastUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -117,6 +118,7 @@ public class DrawVodActivity extends AppCompatActivity implements OnRefreshLoadM
                 if (error != null) {
                     String failedJson = error.toString();
                     Log.d(ADXiluDemoConstant.TAG, "onAdFailed : " + failedJson);
+                    ADXiluToastUtil.show(getApplicationContext(), "广告获取失败 : " + error.getError());
                 }
                 refreshLayout.finish(refreshType, false, false);
                 refreshLayout.autoRefresh();

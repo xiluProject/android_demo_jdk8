@@ -21,6 +21,7 @@ import com.xilu.sdk.ad.entity.ADXiluExtraParams;
 import com.xilu.sdk.ad.error.ADXiluError;
 import com.xilu.sdk.ad.listener.ADXiluNativeAdListener;
 import com.xilu.sdk.util.ADXiluAdUtil;
+import com.xilu.sdk.util.ADXiluToastUtil;
 import com.xilu.sdk.util.ADXiluViewUtil;
 
 import java.util.List;
@@ -153,6 +154,7 @@ public class NativeExpressActivity extends AppCompatActivity {
             public void onAdFailed(ADXiluError error) {
                 if (error != null) {
                     Log.d(ADXiluDemoConstant.TAG, "onAdFailed: " + error.toString());
+                    ADXiluToastUtil.show(getApplicationContext(), "广告获取失败 : " + error.getError());
                 }
             }
         });
