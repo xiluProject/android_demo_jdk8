@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -28,6 +29,7 @@ import com.xilu.sdk.ad.entity.ADXiluAdSize;
 import com.xilu.sdk.ad.entity.ADXiluExtraParams;
 import com.xilu.sdk.ad.error.ADXiluError;
 import com.xilu.sdk.ad.listener.ADXiluSplashAdListener;
+import com.xilu.sdk.config.ADXiluErrorConfig;
 import com.xilu.sdk.listener.ADXiluInitListener;
 import com.xilu.sdk.util.ADXiluToastUtil;
 
@@ -113,14 +115,22 @@ public class SplashAdActivity extends AppCompatActivity {
 
     private void setFullScreen(){
         if (splashType == ADXiluDemoConstant.IMMERSIVE_AND_FULLSCREEN) {
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                getWindow().setStatusBarColor(Color.TRANSPARENT);
+                getWindow().setNavigationBarColor(Color.TRANSPARENT);
+            }
             getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
             getWindow().getDecorView()
                     .setSystemUiVisibility(
-                            View.SYSTEM_UI_FLAG_HIDE_NAVIGATION |
-                            View.SYSTEM_UI_FLAG_FULLSCREEN |
                             View.SYSTEM_UI_FLAG_LAYOUT_STABLE |
                             View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION |
-                            View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN );
+                            View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN |
+                            View.SYSTEM_UI_FLAG_HIDE_NAVIGATION |
+                            View.SYSTEM_UI_FLAG_FULLSCREEN |
+                            View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY );
             WindowManager.LayoutParams attributes = getWindow().getAttributes();
             if (Build.VERSION.SDK_INT >= 28) {
                 attributes.layoutInDisplayCutoutMode = WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES;
@@ -270,6 +280,10 @@ public class SplashAdActivity extends AppCompatActivity {
                     String failedJson = error.toString();
                     Log.d(ADXiluDemoConstant.TAG, "onAdFailed----->" + failedJson);
                     ADXiluToastUtil.show(getApplicationContext(), "广告获取失败 : " + error.getError());
+                    // 投诉冷却期内不会请求开屏，按“无广告”处理
+                    if (error.getCode() == ADXiluErrorConfig.AD_FAILED_COMPLAINT_BLOCK) {
+                        Toast.makeText(SplashAdActivity.this, "投诉冷却中，跳过开屏", Toast.LENGTH_SHORT).show();
+                    }
                 }
                 jumpMain();
             }

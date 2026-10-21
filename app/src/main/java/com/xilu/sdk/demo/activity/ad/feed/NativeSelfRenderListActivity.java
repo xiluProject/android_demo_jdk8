@@ -135,10 +135,13 @@ public class NativeSelfRenderListActivity extends AppCompatActivity implements O
             public void onAdFailed(ADXiluError error) {
                 if (error != null) {
                     Log.d(ADXiluDemoConstant.TAG, "onAdFailed: " + error.toString());
-                    ADXiluToastUtil.show(getApplicationContext(), "广告获取失败 : " + error.getError());
                 }
                 nativeAdAdapter.addData(tempDataList);
                 refreshLayout.finish(refreshType, false, false);
+                if (error != null && !isFinishing() && !isDestroyed()) {
+                    refreshLayout.postDelayed(() ->
+                            ADXiluToastUtil.show(getApplicationContext(), "广告获取失败 : " + error.getError()), 300);
+                }
                 setTvMessage("onAdFailed...");
             }
         });
@@ -186,8 +189,20 @@ public class NativeSelfRenderListActivity extends AppCompatActivity implements O
     }
 
     @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (nativeAd != null) {
+            nativeAd.release();
+            nativeAd = null;
+        }
+    }
+
+    @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
+        if (nativeAd != null) {
+            nativeAd.release();
+        }
         initAd();
     }
 }

@@ -136,10 +136,12 @@ public class NativeExpressListActivity extends AppCompatActivity implements OnRe
             public void onAdFailed(ADXiluError error) {
                 if (error != null) {
                     Log.d(ADXiluDemoConstant.TAG, "onAdFailed: " + error.toString());
-                    ADXiluToastUtil.show(getApplicationContext(), "广告获取失败 : " + error.getError());
                 }
                 nativeAdAdapter.addData(tempDataList);
                 refreshLayout.finish(refreshType, false, false);
+                if (error != null && !isFinishing() && !isDestroyed()) {
+                    ADXiluToastUtil.show(getApplicationContext(), "广告获取失败 : " + error.getError());
+                }
                 setTvMessage("onAdFailed...");
             }
         });
@@ -187,8 +189,20 @@ public class NativeExpressListActivity extends AppCompatActivity implements OnRe
     }
 
     @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (nativeAd != null) {
+            nativeAd.release();
+            nativeAd = null;
+        }
+    }
+
+    @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
+        if (nativeAd != null) {
+            nativeAd.release();
+        }
         initAd();
     }
 }

@@ -124,7 +124,9 @@ public class NativeExpressActivity extends AppCompatActivity {
             public void onAdReceive(List<ADXiluNativeAdInfo> adInfoList) {
                 Log.d(ADXiluDemoConstant.TAG, "onAdReceive: " + adInfoList.size());
                 if (adInfoList != null && adInfoList.size() > 0) {
-                    Toast.makeText(NativeExpressActivity.this, "广告获取成功", Toast.LENGTH_SHORT).show();
+                    if (!isFinishing() && !isDestroyed()) {
+                        Toast.makeText(NativeExpressActivity.this, "广告获取成功", Toast.LENGTH_SHORT).show();
+                    }
                     adInfo = adInfoList.get(0);
 
                     // 是否立刻展示广告
@@ -154,7 +156,9 @@ public class NativeExpressActivity extends AppCompatActivity {
             public void onAdFailed(ADXiluError error) {
                 if (error != null) {
                     Log.d(ADXiluDemoConstant.TAG, "onAdFailed: " + error.toString());
-                    ADXiluToastUtil.show(getApplicationContext(), "广告获取失败 : " + error.getError());
+                    if (!isFinishing() && !isDestroyed()) {
+                        ADXiluToastUtil.show(getApplicationContext(), "广告获取失败 : " + error.getError());
+                    }
                 }
             }
         });
