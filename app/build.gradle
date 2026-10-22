@@ -62,13 +62,13 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.0.0'
     implementation 'com.google.android.material:material:1.0.0'
 
-    // 以下都是用于demo演示加入的三方依�?
+    // 以下都是用于demo演示加入的三方依赖
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
     implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.2'
     implementation 'com.github.bumptech.glide:glide:4.9.0'
 
-    // 以上都是用于demo演示加入的三方依�?
-    // support支持库，如果是AndroidX请使用对应的支持�?
+    // 以上都是用于demo演示加入的三方依赖
+    // support支持库，如果是AndroidX请使用对应的支持库
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 
     implementation(name: 'GDT_SDK.4.662.1532', ext: 'aar')
@@ -92,7 +92,7 @@ dependencies {
     implementation(name: 'AdapterKS-v1.0.8.5', ext: 'aar')
     implementation(name: 'AdapterMS-v1.0.8.5', ext: 'aar')
     implementation(name: 'AdapterBZ-v1.0.8.5', ext: 'aar')
-    // 模块�?build.gradle
+    // 模块级 build.gradle
     implementation 'com.huawei.hms:ads-identifier:3.4.62.300'
     implementation 'com.hihonor.mcs:ads-identifier:1.0.2.301'
 
