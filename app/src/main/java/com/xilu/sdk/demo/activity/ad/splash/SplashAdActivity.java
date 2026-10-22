@@ -44,7 +44,6 @@ public class SplashAdActivity extends AppCompatActivity {
 
     private TextView tvSkip;
     private FrameLayout flContainer;
-    private RelativeLayout rlLogoContainer;
     private Button btnLoadAd;
     private Button btnShowAd;
 
@@ -146,23 +145,11 @@ public class SplashAdActivity extends AppCompatActivity {
 
         flContainer = findViewById(R.id.flContainer);
         tvSkip = findViewById(R.id.tvSkip);
-        rlLogoContainer = findViewById(R.id.rlLogoContainer);
         btnLoadAd = findViewById(R.id.btnLoadAd);
         btnShowAd = findViewById(R.id.btnShowAd);
 
-        if (splashType == ADXiluDemoConstant.IMMERSIVE_AND_FULLSCREEN) {
-            isImmersive = true;
-            rlLogoContainer.setVisibility(View.GONE);
-        } else if (splashType == ADXiluDemoConstant.FULL_SCREEN) {
-            isImmersive = false;
-            rlLogoContainer.setVisibility(View.GONE);
-        } else if (splashType == ADXiluDemoConstant.HALF_SCREEN) {
-            isImmersive = false;
-            ViewGroup.LayoutParams layoutParams = rlLogoContainer.getLayoutParams();
-            layoutParams.height = logoHeightPx;
-            rlLogoContainer.setLayoutParams(layoutParams);
-            rlLogoContainer.setVisibility(View.VISIBLE);
-        }
+        // 开屏一律全屏展示，底部不再留白底 + logo
+        isImmersive = splashType == ADXiluDemoConstant.IMMERSIVE_AND_FULLSCREEN;
 
         if (loadType == ADXiluDemoConstant.LOAD_ONLY) {
             btnLoadAd.setVisibility(View.VISIBLE);
@@ -202,8 +189,8 @@ public class SplashAdActivity extends AppCompatActivity {
 
         // 创建额外参数实例
         ADXiluExtraParams extraParams = new ADXiluExtraParams.Builder()
-                // 设置整个广告视图预期宽高(目前仅穿山甲（头条）平台需要，没有接入头条可不设置)，单位为px，如果不设置穿山甲（头条）开屏广告视图将会以满屏进行填充
-                .adSize(new ADXiluAdSize(widthPixels, heightPixels - logoHeightPx))
+                // 设置整个广告视图预期宽高(目前仅穿山甲（头条）平台需要，没有接入头条可不设置)，单位为px
+                .adSize(new ADXiluAdSize(widthPixels, heightPixels))
                 .setAdShakeDisable(issensor)
                 .build();
         // 如果开屏容器不是全屏可以设置额外参数
