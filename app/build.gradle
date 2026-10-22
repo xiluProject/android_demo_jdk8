@@ -30,10 +30,15 @@ android {
 
     signingConfigs {
         release {
-            keyAlias MYAPP_RELEASE_KEY_ALIAS
-            keyPassword MYAPP_RELEASE_KEY_PASSWORD
-            storeFile file(MYAPP_RELEASE_STORE_FILE)
-            storePassword MYAPP_RELEASE_STORE_PASSWORD
+            def keystorePropsFile = rootProject.file('keystore.properties')
+            if (keystorePropsFile.exists()) {
+                def keystoreProps = new Properties()
+                keystorePropsFile.withInputStream { keystoreProps.load(it) }
+                storeFile rootProject.file(keystoreProps['MYAPP_RELEASE_STORE_FILE'])
+                storePassword keystoreProps['MYAPP_RELEASE_STORE_PASSWORD']
+                keyAlias keystoreProps['MYAPP_RELEASE_KEY_ALIAS']
+                keyPassword keystoreProps['MYAPP_RELEASE_KEY_PASSWORD']
+            }
         }
     }
 

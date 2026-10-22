@@ -21,3 +21,4 @@ sh/
 .pdf_build/
 app/keystore/
 gradle.properties
+keystore.properties
