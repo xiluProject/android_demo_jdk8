@@ -60,10 +60,6 @@ public class SplashAdActivity extends AppCompatActivity {
      */
     private int loadType = ADXiluDemoConstant.LOAD_AND_SHOW;
     /**
-     * logo高度
-     */
-    private int logoHeightPx;
-    /**
      * 是否沉浸状态栏
      */
     private boolean isImmersive;
@@ -108,8 +104,6 @@ public class SplashAdActivity extends AppCompatActivity {
         splashType = getIntent().getIntExtra("splashType", ADXiluDemoConstant.HALF_SCREEN);
 
         loadType = getIntent().getIntExtra("loadType", ADXiluDemoConstant.LOAD_AND_SHOW);
-
-        logoHeightPx = getIntent().getIntExtra("logoHeightPx", 0);
     }
 
     private void setFullScreen(){

@@ -40,36 +40,6 @@
 
     </RadioGroup>
 
-    <LinearLayout
-        android:id="@+id/llHalfEnterLogoHeightSize"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center_horizontal">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="底部LOGO高度"
-            android:textSize="16sp"
-            android:textColor="#000000"/>
-
-        <EditText
-            android:id="@+id/etLogoHeight"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:inputType="number"
-            android:text="300"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="px"
-            android:textSize="16sp"
-            android:textColor="#000000"/>
-    </LinearLayout>
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

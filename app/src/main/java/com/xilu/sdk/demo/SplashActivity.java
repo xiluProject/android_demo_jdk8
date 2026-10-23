@@ -42,7 +42,6 @@ public class SplashActivity extends AppCompatActivity {
 
     private TextView tvSkip;
     private FrameLayout flContainer;
-    private RelativeLayout rlLogoContainer;
     private Button btnLoadAd;
     private Button btnShowAd;
 
@@ -58,10 +57,6 @@ public class SplashActivity extends AppCompatActivity {
      * 加载类型
      */
     private int loadType = ADXiluDemoConstant.LOAD_AND_SHOW;
-    /**
-     * logo高度
-     */
-    private int logoHeightPx;
     /**
      * 是否沉浸状态栏
      */
@@ -108,8 +103,6 @@ public class SplashActivity extends AppCompatActivity {
         splashType = getIntent().getIntExtra("splashType", ADXiluDemoConstant.HALF_SCREEN);
 
         loadType = getIntent().getIntExtra("loadType", ADXiluDemoConstant.LOAD_AND_SHOW);
-
-        logoHeightPx = getIntent().getIntExtra("logoHeightPx", 0);
     }
 
     private void setFullScreen(){
@@ -136,22 +129,14 @@ public class SplashActivity extends AppCompatActivity {
 
         flContainer = findViewById(R.id.flContainer);
         tvSkip = findViewById(R.id.tvSkip);
-        rlLogoContainer = findViewById(R.id.rlLogoContainer);
         btnLoadAd = findViewById(R.id.btnLoadAd);
         btnShowAd = findViewById(R.id.btnShowAd);
 
+        // 开屏一律占满整屏，底部不再留白底 + logo
         if (splashType == ADXiluDemoConstant.IMMERSIVE_AND_FULLSCREEN) {
             isImmersive = true;
-            rlLogoContainer.setVisibility(View.GONE);
-        } else if (splashType == ADXiluDemoConstant.FULL_SCREEN) {
+        } else {
             isImmersive = false;
-            rlLogoContainer.setVisibility(View.GONE);
-        } else if (splashType == ADXiluDemoConstant.HALF_SCREEN) {
-            isImmersive = false;
-            ViewGroup.LayoutParams layoutParams = rlLogoContainer.getLayoutParams();
-            layoutParams.height = logoHeightPx;
-            rlLogoContainer.setLayoutParams(layoutParams);
-            rlLogoContainer.setVisibility(View.VISIBLE);
         }
 
         if (loadType == ADXiluDemoConstant.LOAD_ONLY) {
@@ -192,8 +177,8 @@ public class SplashActivity extends AppCompatActivity {
 
         // 创建额外参数实例
         ADXiluExtraParams extraParams = new ADXiluExtraParams.Builder()
-                // 设置整个广告视图预期宽高(目前仅穿山甲（头条）平台需要，没有接入头条可不设置)，单位为px，如果不设置穿山甲（头条）开屏广告视图将会以满屏进行填充
-                .adSize(new ADXiluAdSize(widthPixels, heightPixels - logoHeightPx))
+                // 开屏容器是整屏，广告视图也按整屏给（穿山甲需要，其他平台忽略）
+                .adSize(new ADXiluAdSize(widthPixels, heightPixels))
                 .setAdShakeDisable(issensor)
                 .build();
         // 如果开屏容器不是全屏可以设置额外参数
