@@ -1,4 +1,4 @@
-# 西陆聚合广告SDK ——接入文档 V1.0.8.4
+# 西陆聚合广告SDK ——接入文档 V1.0.8.6
 
 
 
@@ -34,7 +34,7 @@ Xilu聚合广告SDK 主要由**ADXilu核心SDK（简称ADXiluSdk）**和一个�
 
 | Name         | 大小   | 版本号    |
 | ------------ | ----  |--------|
-| ADXilu基础包 | 0.43M | V1.0.8.4 |
+| ADXilu基础包 | 0.77M | V1.0.8.6 |
 
 
 
@@ -117,32 +117,32 @@ dependencies {
     implementation 'com.google.android.material:material:1.0.0'
 
     // ADXiluSdk核⼼库必须导⼊
-    implementation(name: 'XiluSDKCore-v1.0.8.4', ext: 'aar')
+    implementation(name: 'XiluSDKCore-v1.0.8.6', ext: 'aar')
 
     // ⼴点通AdapterSdk，可选的
-    implementation(name: 'AdapterGDT-v1.0.8.4', ext: 'aar')
+    implementation(name: 'AdapterGDT-v1.0.8.6', ext: 'aar')
     implementation(name: 'GDT_SDK.4.662.1532', ext: 'aar')
 
     // 穿山甲AdapterSdk，可选的
-    implementation(name: 'AdapterCSJ-v1.0.8.4', ext: 'aar')
+    implementation(name: 'AdapterCSJ-v1.0.8.6', ext: 'aar')
     implementation(name: 'open_ad_sdk_7.5.1.0', ext: 'aar')
 
     // 百青藤AdapterSdk，可选的
-    implementation(name: 'AdapterBQT-v1.0.8.4', ext: 'aar')
+    implementation(name: 'AdapterBQT-v1.0.8.6', ext: 'aar')
     implementation(name: 'Baidu_MobAds_SDK-release_v9.450', ext: 'aar')
 
     // 快⼿AdapterSdk，可选的
-    implementation(name: 'AdapterKS-v1.0.8.4', ext: 'aar')
+    implementation(name: 'AdapterKS-v1.0.8.6', ext: 'aar')
     implementation(name: 'KS_AD_4.4.20.1', ext: 'aar')
 
     // 美数AdapterSdk，可选的
-    implementation(name: 'AdapterMS-v1.0.8.4', ext: 'aar')
+    implementation(name: 'AdapterMS-v1.0.8.6', ext: 'aar')
     implementation(name: 'MS_AD_2.5.7.7', ext: 'aar')
     implementation 'com.google.code.gson:gson:2.8.5'
     implementation 'com.squareup.okhttp3:okhttp:3.12.1'
 
     // 倍孜AdapterSdk，可选的
-    implementation(name: 'AdapterBZ-v1.0.8.4', ext: 'aar')
+    implementation(name: 'AdapterBZ-v1.0.8.6', ext: 'aar')
     implementation(name: 'BZ_AD_5.2.1.21', ext: 'aar')
 
     // 在华为、荣耀设备上获取OAID，需要额外添加以下依赖
@@ -197,6 +197,12 @@ allprojects {
 <uses-permission android:name="android.permission.INTERNET" />
 <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 ```
+
+> **开屏反馈截图权限说明（V1.0.8.6+）**
+>
+> - 用户选择反馈截图时使用系统照片选择器 / SAF，**不需要**申请 `READ_MEDIA_IMAGES` 或 `READ_EXTERNAL_STORAGE`。
+> - Android 9 及以下，SDK 需要把广告截图写入公共相册供用户选择，需要 `WRITE_EXTERNAL_STORAGE`。SDK 会在用户点击“选择截图”时按需申请，宿主无需提前申请，但**请不要从合并后的 Manifest 中移除该权限**。
+> - 用户拒绝写权限时，只能从相册选择 24 小时内的历史反馈截图；如需使用当前广告截图，请授权或在系统设置中开启。
 
 
 
@@ -677,6 +683,8 @@ splashAd.setListener(new ADXiluSplashAdListener() {
 // 加载开屏广告
 splashAd.loadAd(String posId);
 ```
+
+> **开屏反馈说明（V1.0.8.6+）**：开屏的“反馈”入口由后端 `ads.ext.complaint.splash` 配置控制，SDK 自动集成，无需额外 API；用户提交反馈成功后会按后端 `blockTime` 进入冷却。截图选择涉及的权限见 5.2。
 
 #### 6.2.3 开屏广告加载与展示分离
 
