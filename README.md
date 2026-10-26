@@ -198,14 +198,6 @@ allprojects {
 <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 ```
 
-> **开屏反馈截图权限说明（V1.0.8.6+）**
->
-> - 用户选择反馈截图时使用系统照片选择器 / SAF，**不需要**申请 `READ_MEDIA_IMAGES` 或 `READ_EXTERNAL_STORAGE`。
-> - Android 9 及以下，SDK 需要把广告截图写入公共相册供用户选择，需要 `WRITE_EXTERNAL_STORAGE`。SDK 会在用户点击“选择截图”时按需申请，宿主无需提前申请，但**请不要从合并后的 Manifest 中移除该权限**。
-> - 用户拒绝写权限时，只能从相册选择 24 小时内的历史反馈截图；如需使用当前广告截图，请授权或在系统设置中开启。
-
-
-
 ### 5.3 兼容配置
 
 #### 5.3.1 网络配置
@@ -683,8 +675,6 @@ splashAd.setListener(new ADXiluSplashAdListener() {
 // 加载开屏广告
 splashAd.loadAd(String posId);
 ```
-
-> **开屏反馈说明（V1.0.8.6+）**：开屏的“反馈”入口由后端 `ads.ext.complaint.splash` 配置控制，SDK 自动集成，无需额外 API；用户提交反馈成功后会按后端 `blockTime` 进入冷却。截图选择涉及的权限见 5.2。
 
 #### 6.2.3 开屏广告加载与展示分离
 
