@@ -19,6 +19,4 @@ local.properties
 sh/
 *.pdf
 .pdf_build/
-app/keystore/
 gradle.properties
-keystore.properties

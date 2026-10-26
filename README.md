@@ -1383,18 +1383,14 @@ public void onAdFailed(ADXiluError error) {
 
 ## 7. 本地运行 Demo 的签名配置
 
-Demo 的 `debug`/`release` 都使用 `app/build.gradle` 里 `signingConfigs.release` 的签名配置，签名信息从工程根目录的 `keystore.properties` 读取：
-
-1. 复制 `keystore.properties.example` 为 `keystore.properties`；
-2. 按模板填四项：签名文件路径、别名、签名文件密码、别名密码；
-3. 把签名文件放到配置的路径（默认 `app/keystore/xilu_release.keystore`）。
+Demo 的 `debug`/`release` 都使用 `app/build.gradle` 里 `signingConfigs.release` 的签名配置，签名信息从工程根目录的 `keystore.properties` 读取。该文件与签名文件 `app/keystore/xilu_release.keystore` 都已提交到仓库，clone 后无需额外配置即可直接编译：
 
 ```
 MYAPP_RELEASE_STORE_FILE=app/keystore/xilu_release.keystore
 MYAPP_RELEASE_KEY_ALIAS=release
-MYAPP_RELEASE_STORE_PASSWORD=your_store_password
-MYAPP_RELEASE_KEY_PASSWORD=your_key_password
+MYAPP_RELEASE_STORE_PASSWORD=（见 keystore.properties）
+MYAPP_RELEASE_KEY_PASSWORD=（见 keystore.properties）
 ```
 
-`keystore.properties` 与 `app/keystore/` 都已加入 `.gitignore`，不会提交；文件不存在时工程仍可正常配置，只是不会设置 release 签名。
+本 Demo 为了方便直接运行，把 keystore 和密码一起提交了；正式项目不要这么做，应改为从本地或 CI 环境变量注入，并且不要把 keystore 提交进仓库。
 
