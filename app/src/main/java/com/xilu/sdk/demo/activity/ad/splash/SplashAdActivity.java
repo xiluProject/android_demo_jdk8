@@ -262,6 +262,7 @@ public class SplashAdActivity extends AppCompatActivity {
                     ADXiluToastUtil.show(getApplicationContext(), "广告获取失败 : " + error.getError());
                     // 投诉冷却期内不会请求开屏，按“无广告”处理
                     if (error.getCode() == ADXiluErrorConfig.AD_FAILED_COMPLAINT_BLOCK) {
+                        /**该toast只是为了方便测试，开发者接入时，需要把这个toast删掉，以免影响用户体验**/
                         Toast.makeText(SplashAdActivity.this, "投诉冷却中，跳过开屏", Toast.LENGTH_SHORT).show();
                     }
                 }
